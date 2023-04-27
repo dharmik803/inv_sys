@@ -11,29 +11,31 @@
   
   <div class="container">
    
-      <h1>Products</h1>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Product name" [(ngModel)]="newProduct.title">
-      </div>
-      <div class="form-group">
-        <input type="text" class="form-control" placeholder="Quantity" [(ngModel)]="newProduct.category">
-      </div>
-      <button class="btn btn-primary" (click)="addProduct()">Add Product</button>
+      <h1 class="mb-3">Products</h1>
+        <div class="form-group mb-3 d-flex justify-content-center">
+          <input type="text" class="form-control w-50" placeholder="Product name" [(ngModel)]="newProduct.title">
+        </div>
+        <div class="form-group mb-3 d-flex justify-content-center">
+          <input type="text" class="form-control w-50" placeholder="Category" [(ngModel)]="newProduct.category">
+        </div>
+        <div class=" d-flex justify-content-center" *ngIf="newProduct.title && newProduct.category">
+          <button class="btn btn-dark" (click)="addProduct()">Add Product</button>
+        </div>
       <hr>
       <div class="container d-flex justify-content-center d-none" id="update">
         <div class="mt-5 border p-3">
           <div class="form-group ">
-            <input type="text" class="form-control" placeholder="Product name" [(ngModel)]="selectedProduct.title">
+            <input type="text" class="form-control" placeholder="Product name" [(ngModel)]="selectedProduct.title" >
           </div>
           <div class="form-group my-2">
-            <input type="text" class="form-control" placeholder="Quantity" [(ngModel)]="selectedProduct.category">
+            <input type="text" class="form-control" placeholder="Category" [(ngModel)]="selectedProduct.category" >
           </div>
-          <div class="d-flex justify-content-center">
+          <div class="d-flex justify-content-center" *ngIf="selectedProduct.title && selectedProduct.category">
             <button class="btn btn-warning text-light" (click)="updateProduct()">update</button>
           </div>
         </div>
        </div>
-      <table class="table table-striped">
+      <table class="table table-hover table-striped text-center border border-light">
         <thead>
           <tr>
             <th>ID</th>
@@ -42,13 +44,13 @@
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody class="">
           <tr *ngFor="let product of products">
             <td>{{ product.id }}</td>
             <td>{{ product.title }}</td>
             <td>{{ product.category }}</td>
-           <td><button class="btn btn-sm btn-primary" (click)="editProduct(product)">Edit</button>
-            <button class="btn btn-sm btn-danger" (click)="deleteProduct(product)">Delete</button></td>
+           <td><button class="btn btn-sm btn-dark me-3" (click)="editProduct(product)">Edit</button>
+            <button class="btn btn-sm btn-dark" (click)="deleteProduct(product)">Delete</button></td>
           </tr>
         </tbody>
       </table>
